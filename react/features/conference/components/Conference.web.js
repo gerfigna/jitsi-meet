@@ -42,9 +42,9 @@ export default class Conference extends Component {
                     className = 'toolbar'
                     id = 'extendedToolbar'>
                     <div id = 'extendedToolbarButtons' />
-                    <a
-                        className = 'button icon-feedback'
-                        id = 'feedbackButton' />
+                    {/*<a*/}
+                        {/*className = 'button icon-feedback'*/}
+                        {/*id = 'feedbackButton' />*/}
                     <div id = 'sideToolbarContainer' />
                 </div>
                 <div id = 'videospace'>

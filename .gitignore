@@ -1,8 +1,6 @@
 *.swp
 .*.tmp
 deploy-local.sh
-libs/
-all.css
 *css.map
 unsupported_browser.css
 .remote-sync.json
@@ -54,3 +52,4 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+config.js

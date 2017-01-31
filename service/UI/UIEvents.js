@@ -34,6 +34,7 @@ export default {
     UPDATE_SHARED_VIDEO: "UI.update_shared_video",
     USER_KICKED: "UI.user_kicked",
     REMOTE_AUDIO_MUTED: "UI.remote_audio_muted",
+    REMOTE_AUDIO_UNMUTED: "UI.remote_audio_unmuted",
     TOGGLE_FULLSCREEN: "UI.toogle_fullscreen",
     FULLSCREEN_TOGGLED: "UI.fullscreen_toggled",
     AUTH_CLICKED: "UI.auth_clicked",

@@ -142,12 +142,16 @@ RemoteVideo.prototype._generatePopupContent = function () {
 
     let muteTranslationKey;
     let muteClassName;
+    let muteIcon;
+
     if (this.isAudioMuted) {
-        muteTranslationKey = 'videothumbnail.muted';
-        muteClassName = 'mutelink disabled';
+        muteTranslationKey = 'videothumbnail.dounmute';
+        muteClassName = 'mutelink';
+        muteIcon = 'icon-microphone';
     } else {
         muteTranslationKey = 'videothumbnail.domute';
         muteClassName = 'mutelink';
+        muteIcon = 'icon-mic-disabled';
     }
 
     let muteHandler = this._muteHandler.bind(this);
@@ -157,7 +161,7 @@ RemoteVideo.prototype._generatePopupContent = function () {
         {
             id: 'mutelink_' + this.id,
             handler: muteHandler,
-            icon: 'icon-mic-disabled',
+            icon: muteIcon,
             className: muteClassName,
             data: {
                 i18n: muteTranslationKey
@@ -183,17 +187,21 @@ RemoteVideo.prototype._generatePopupContent = function () {
 };
 
 RemoteVideo.prototype._muteHandler = function () {
-    if (this.isAudioMuted)
-        return;
+    if (this.isAudioMuted){
+        this.emitter.emit(UIEvents.REMOTE_AUDIO_UNMUTED, this.id);
+    }
+    else{
+        this.emitter.emit(UIEvents.REMOTE_AUDIO_MUTED, this.id);
+    }
 
-    RemoteVideo.showMuteParticipantDialog().then(reason => {
-        if(reason === MUTED_DIALOG_BUTTON_VALUES.muted) {
-            this.emitter.emit(UIEvents.REMOTE_AUDIO_MUTED, this.id);
-        }
-    }).catch(e => {
-        //currently shouldn't be called
-        logger.error(e);
-    });
+    // RemoteVideo.showMuteParticipantDialog().then(reason => {
+    //     if(reason === MUTED_DIALOG_BUTTON_VALUES.muted) {
+    //         this.emitter.emit(UIEvents.REMOTE_AUDIO_MUTED, this.id);
+    //     }
+    // }).catch(e => {
+    //     //currently shouldn't be called
+    //     logger.error(e);
+    // });
 
     this.popover.forceHide();
 };

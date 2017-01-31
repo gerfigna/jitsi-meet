@@ -43,9 +43,9 @@ function _addConferenceListeners(conference, dispatch) {
             JitsiConferenceEvents.CONFERENCE_LEFT,
             (...args) => dispatch(_conferenceLeft(conference, ...args)));
 
-    conference.on(
-            JitsiConferenceEvents.DOMINANT_SPEAKER_CHANGED,
-            (...args) => dispatch(dominantSpeakerChanged(...args)));
+    // conference.on(
+    //         JitsiConferenceEvents.DOMINANT_SPEAKER_CHANGED,
+    //         (...args) => dispatch(dominantSpeakerChanged(...args)));
 
     conference.on(
             JitsiConferenceEvents.LOCK_STATE_CHANGED,

@@ -100,6 +100,12 @@ const buttonHandlers = {
     "toolbar_button_raisehand": function () {
         JitsiMeetJS.analytics.sendEvent('toolbar.raiseHand.clicked');
         APP.conference.maybeToggleRaisedHand();
+    },
+    "toolbar_button_muteall": function () {
+        APP.conference.muteAllOthers();
+    },
+    "toolbar_button_unmuteall": function () {
+        APP.conference.unmuteAllOthers();
     }
 };
 
@@ -250,6 +256,20 @@ const defaultToolbarButtons = {
         shortcutDescription: "keyboardShortcuts.raiseHand",
         content: "Raise Hand",
         i18n: "[content]toolbar.raiseHand"
+    },
+    'muteall': {
+        id: "toolbar_button_muteall",
+        tooltipKey: 'toolbar.muteAll',
+        className: "button icon-mute-all",
+        content: "Mute All",
+        i18n: "[content]toolbar.muteAll"
+    },
+    'unmuteall': {
+        id: "toolbar_button_unmuteall",
+        tooltipKey: 'toolbar.unmuteAll',
+        className: "button icon-unmute-all",
+        content: "Unmute All",
+        i18n: "[content]toolbar.unmuteAll"
     },
     //init and btn handler: Recording.initRecordingButton (Recording.js)
     'recording': {
@@ -458,7 +478,7 @@ Toolbar = {
                 '#toolbar_button_camera',
                 enabled,
                 /* data-i18n attribute value */
-                `[content]toolbar.${enabled ? 'videomute' : 'cameraDisabled'}`,
+                `[content]toolbar.${enabled ? 'videomute' : 'xcameraDisabled'}`,
                 /* shortcut attribute value */
                 'toggleVideoPopover');
 

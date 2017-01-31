@@ -94,7 +94,7 @@ var ContactListView = {
      */
     setup (model) {
         this.model = model;
-        this.addInviteButton();
+        // this.addInviteButton();
         this.registerListeners();
         this.toggleLock();
     },

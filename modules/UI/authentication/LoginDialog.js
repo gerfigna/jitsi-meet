@@ -205,14 +205,29 @@ export default {
      * @returns dialog
      */
     showAuthRequiredDialog: function (roomName, onAuthNow) {
-        var msg = APP.translation.generateTranslationHTML(
-            "[html]dialog.WaitForHostMsg", {room: roomName}
-        );
+        var msg = config.moderatorLogin ?
+            APP.translation.generateTranslationHTML(
+                "[html]dialog.ModeratorShouldLoginMsg",
+                {room: roomName}
+            )
+            :
+            APP.translation.generateTranslationHTML(
+                "[html]dialog.WaitForHostMsg",
+                {room: roomName}
+            )
+        ;
 
-        var buttonTxt = APP.translation.generateTranslationHTML(
-            "dialog.IamHost"
-        );
-        var buttons = [{title: buttonTxt, value: "authNow"}];
+
+        var buttonTxt =
+            APP.translation.generateTranslationHTML(
+                "dialog.IamHost"
+            );
+
+        var buttons =
+            config.moderatorLogin ?
+                [{title: buttonTxt, value: "authNow"}]
+                :
+                [];
 
         return APP.UI.messageHandler.openDialog(
             "dialog.WaitingForHost",

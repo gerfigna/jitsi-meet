@@ -82,57 +82,57 @@ export default {
      * @param {string} userId user id
      */
     getAvatarUrl: function (userId) {
-        if (config.disableThirdPartyRequests) {
-            return 'images/avatar2.png';
-        }
-
-        if (!userId || APP.conference.isLocalId(userId)) {
-            userId = "local";
-        }
-
-        let avatarId = null;
-        const user = users[userId];
-
-        // The priority is url, email and lowest is avatarId
-        if(user) {
-            if(user.url)
-                return user.url;
-
-            if (user.email)
-                avatarId = user.email;
-            else {
-                avatarId = user.avatarId;
-            }
-        }
-
-        // If the ID looks like an email, we'll use gravatar.
-        // Otherwise, it's a random avatar, and we'll use the configured
-        // URL.
-        let random = !avatarId || avatarId.indexOf('@') < 0;
-
-        if (!avatarId) {
-            logger.warn(
-                `No avatar stored yet for ${userId} - using ID as avatar ID`);
-            avatarId = userId;
-        }
-        avatarId = MD5.hexdigest(avatarId.trim().toLowerCase());
-
-
-        let urlPref = null;
-        let urlSuf = null;
-        if (!random) {
-            urlPref = 'https://www.gravatar.com/avatar/';
-            urlSuf = "?d=wavatar&size=200";
-        }
-        else if (random && interfaceConfig.RANDOM_AVATAR_URL_PREFIX) {
-            urlPref = interfaceConfig.RANDOM_AVATAR_URL_PREFIX;
-            urlSuf = interfaceConfig.RANDOM_AVATAR_URL_SUFFIX;
-        }
-        else {
-            urlPref = 'https://api.adorable.io/avatars/200/';
-            urlSuf = ".png";
-        }
-
-        return urlPref + avatarId + urlSuf;
+        return 'images/avatar2.png';
+        // if (config.disableThirdPartyRequests) {
+        // }
+        //
+        // if (!userId || APP.conference.isLocalId(userId)) {
+        //     userId = "local";
+        // }
+        //
+        // let avatarId = null;
+        // const user = users[userId];
+        //
+        // // The priority is url, email and lowest is avatarId
+        // if(user) {
+        //     if(user.url)
+        //         return user.url;
+        //
+        //     if (user.email)
+        //         avatarId = user.email;
+        //     else {
+        //         avatarId = user.avatarId;
+        //     }
+        // }
+        //
+        // // If the ID looks like an email, we'll use gravatar.
+        // // Otherwise, it's a random avatar, and we'll use the configured
+        // // URL.
+        // let random = !avatarId || avatarId.indexOf('@') < 0;
+        //
+        // if (!avatarId) {
+        //     logger.warn(
+        //         `No avatar stored yet for ${userId} - using ID as avatar ID`);
+        //     avatarId = userId;
+        // }
+        // avatarId = MD5.hexdigest(avatarId.trim().toLowerCase());
+        //
+        //
+        // let urlPref = null;
+        // let urlSuf = null;
+        // if (!random) {
+        //     urlPref = 'https://www.gravatar.com/avatar/';
+        //     urlSuf = "?d=wavatar&size=200";
+        // }
+        // else if (random && interfaceConfig.RANDOM_AVATAR_URL_PREFIX) {
+        //     urlPref = interfaceConfig.RANDOM_AVATAR_URL_PREFIX;
+        //     urlSuf = interfaceConfig.RANDOM_AVATAR_URL_SUFFIX;
+        // }
+        // else {
+        //     urlPref = 'https://api.adorable.io/avatars/200/';
+        //     urlSuf = ".png";
+        // }
+        //
+        // return urlPref + avatarId + urlSuf;
     }
 };

@@ -219,8 +219,9 @@ function requireAuth(room, lockPassword) {
         return;
     }
 
+
     authRequiredDialog = LoginDialog.showAuthRequiredDialog(
-        room.getName(), authenticate.bind(null, room, lockPassword)
+        interfaceConfig.eventName, authenticate.bind(null, room, lockPassword)
     );
 }
 

@@ -4,7 +4,7 @@ const logger = require("jitsi-meet-logger").getLogger(__filename);
 var configUtils = require('./Util');
 var params = {};
 
-params = getConfigParamsFromUrl();
+params = getConfigParamsFromUrl(null, true);
 
 var URLProcessor = {
     setConfigParametersFromUrl: function () {

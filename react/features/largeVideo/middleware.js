@@ -49,6 +49,7 @@ MiddlewareRegistry.register(store => next => action => {
                     action.track.jitsiTrack);
             const participantId = state['features/largeVideo'].participantId;
 
+            // aquí está la milonga !
             (track.participantId === participantId)
                 && store.dispatch(selectParticipant());
         }

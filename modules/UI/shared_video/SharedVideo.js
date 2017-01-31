@@ -489,19 +489,21 @@ export default class SharedVideoManager {
      * video update or is called locally.
      */
     smartPlayerMute(mute, isVideoUpdate) {
-        if (!this.player.isMuted() && mute) {
-            this.player.mute();
-
-            if (isVideoUpdate)
-                this.smartAudioUnmute();
-        }
-        else if (this.player.isMuted() && !mute) {
-            this.player.unMute();
-            if (isVideoUpdate)
-                this.smartAudioMute();
-        }
-
-        this.showSharedVideoMutedPopup(mute);
+        console.info('smartPlayerMute skipped');
+        return;
+        // if (!this.player.isMuted() && mute) {
+        //     this.player.mute();
+        //
+        //     if (isVideoUpdate)
+        //         this.smartAudioUnmute();
+        // }
+        // else if (this.player.isMuted() && !mute) {
+        //     this.player.unMute();
+        //     if (isVideoUpdate)
+        //         this.smartAudioMute();
+        // }
+        //
+        // this.showSharedVideoMutedPopup(mute);
     }
 
     /**
@@ -510,13 +512,15 @@ export default class SharedVideoManager {
      * we're unmuting the mike automatically.
      */
     smartAudioUnmute() {
-        if (APP.conference.isLocalAudioMuted()
-            && !this.mutedWithUserInteraction
-            && !this.isSharedVideoVolumeOn()) {
-
-            this.emitter.emit(UIEvents.AUDIO_MUTED, false, false);
-            this.showMicMutedPopup(false);
-        }
+        console.info('smartAudioUnmute skipped');
+        return;
+        // if (APP.conference.isLocalAudioMuted()
+        //     && !this.mutedWithUserInteraction
+        //     && !this.isSharedVideoVolumeOn()) {
+        //
+        //     this.emitter.emit(UIEvents.AUDIO_MUTED, false, false);
+        //     this.showMicMutedPopup(false);
+        // }
     }
 
     /**
@@ -524,12 +528,14 @@ export default class SharedVideoManager {
      * volume is on we mute the mike.
      */
     smartAudioMute() {
-        if (!APP.conference.isLocalAudioMuted()
-            && this.isSharedVideoVolumeOn()) {
-
-            this.emitter.emit(UIEvents.AUDIO_MUTED, true, false);
-            this.showMicMutedPopup(true);
-        }
+        console.info('smartAudioMute skipped');
+        return;
+        // if (!APP.conference.isLocalAudioMuted()
+        //     && this.isSharedVideoVolumeOn()) {
+        //
+        //     this.emitter.emit(UIEvents.AUDIO_MUTED, true, false);
+        //     this.showMicMutedPopup(true);
+        // }
     }
 
     /**

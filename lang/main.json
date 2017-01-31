@@ -105,10 +105,12 @@
         "talkWhileMutedPopup": "Trying to speak? You are muted.",
         "unableToUnmutePopup": "You cannot un-mute while the shared video is on.",
         "cameraDisabled": "Camera is not available",
-        "micDisabled": "Microphone is not available",
+        "micDisabled": "Audio is disabled",
         "filmstrip": "Show / Hide videos",
         "profile": "Edit your profile",
-        "raiseHand": "Raise / Lower your hand"
+        "raiseHand": "Raise / Lower your hand",
+        "muteAll": "Mute All",
+        "unmuteAll": "Unmute All"
     },
     "bottomtoolbar": {
         "chat": "Open / close chat",
@@ -156,6 +158,7 @@
         "kick": "Kick out",
         "muted": "Muted",
         "domute": "Mute",
+        "dounmute": "Unmute",
         "flip": "Flip"
 
     },
@@ -243,8 +246,9 @@
         "removeSharedVideoTitle": "Remove shared video",
         "removeSharedVideoMsg": "Are you sure you would like to remove your shared video?",
         "alreadySharedVideoMsg": "Another participant is already sharing video. This conference allows only one shared video at a time.",
-        "WaitingForHost": "Waiting for the host ...",
-        "WaitForHostMsg": "The conference <b>__room__ </b> has not yet started. If you are the host then please authenticate. Otherwise, please wait for the host to arrive.",
+        "WaitingForHost": "Waiting for the host...",
+        "WaitForHostMsg": "The conference <b>__room__ </b> has not yet started. Please wait for the host to arrive... <span style='text-align:center; display:block; margin-top:10px;'><img src=\"wait.gif\"/></span>",
+        "ModeratorShouldLoginMsg": "The conference <b>__room__ </b> has not yet started. If you are the host then please authenticate",
         "IamHost": "I am the host",
         "Cancel": "Cancel",
         "Submit": "Submit",

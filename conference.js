@@ -41,6 +41,8 @@ import {VIDEO_CONTAINER_TYPE} from "./modules/UI/videolayout/VideoContainer";
  * Known custom conference commands.
  */
 const commands = {
+    MUTE_ALL: "mute-all",
+    MUTE_PARTICIPANT: "mute-participant",
     EMAIL: "email",
     AVATAR_URL: "avatar-url",
     AVATAR_ID: "avatar-id",
@@ -90,7 +92,7 @@ function createInitialLocalTracksAndConnect(roomName) {
 
     // First try to retrieve both audio and video.
     let tryCreateLocalTracks = createLocalTracks(
-            { devices: ['audio', 'video'] }, true)
+            { devices: ['audio'] }, true)
         .catch(err => {
             // If failed then try to retrieve only audio.
             audioAndVideoError = err;
@@ -1152,6 +1154,11 @@ export default {
                     APP.UI.updateUserRole(user);
                 }
             }
+
+            if (this.isModerator) {
+               // room.setStartMutedPolicy({'audio': true, 'video': true});
+               APP.UI.emitEvent(UIEvents.FOLLOW_ME_ENABLED, true);
+            }
         });
 
         room.on(ConferenceEvents.TRACK_ADDED, (track) => {
@@ -1229,19 +1236,19 @@ export default {
             (id, isActive) => {
                 APP.UI.participantConnectionStatusChanged(id, isActive);
         });
-        room.on(ConferenceEvents.DOMINANT_SPEAKER_CHANGED, (id) => {
-            if (this.isLocalId(id)) {
-                this.isDominantSpeaker = true;
-                this.setRaisedHand(false);
-            } else {
-                this.isDominantSpeaker = false;
-                var participant = room.getParticipantById(id);
-                if (participant) {
-                    APP.UI.setRaisedHandStatus(participant, false);
-                }
-            }
-            APP.UI.markDominantSpeaker(id);
-        });
+        // room.on(ConferenceEvents.DOMINANT_SPEAKER_CHANGED, (id) => {
+        //     if (this.isLocalId(id)) {
+        //         this.isDominantSpeaker = true;
+        //         this.setRaisedHand(false);
+        //     } else {
+        //         this.isDominantSpeaker = false;
+        //         var participant = room.getParticipantById(id);
+        //         if (participant) {
+        //             APP.UI.setRaisedHandStatus(participant, false);
+        //         }
+        //     }
+        //     APP.UI.markDominantSpeaker(id);
+        // });
 
         if (!interfaceConfig.filmStripOnly) {
             room.on(ConferenceEvents.CONNECTION_INTERRUPTED, () => {
@@ -1350,6 +1357,26 @@ export default {
                 APP.UI.updateRemoteStats(id, stats.connectionQuality, stats);
         });
 
+        room.addCommandListener(this.commands.defaults.MUTE_ALL,
+            (data, from) => {
+                if(!this.isLocalId(from) && this.isParticipantModerator(from)) {
+                    APP.UI.setMicrophoneButtonEnabled(!data.value);
+                    muteLocalAudio(data.value);
+                }
+        });
+
+
+        room.addCommandListener(this.commands.defaults.MUTE_PARTICIPANT,
+            ({value, attributes}, id) => {
+                if(
+                    this.isParticipantModerator(id)
+                    &&
+                    this.isLocalId(attributes.participant)) {
+                        APP.UI.setMicrophoneButtonEnabled(!value);
+                        muteLocalAudio(value);
+                }
+            });
+
         room.addCommandListener(this.commands.defaults.ETHERPAD, ({value}) => {
             APP.UI.initEtherpad(value);
         });
@@ -1455,6 +1482,17 @@ export default {
 
         APP.UI.addListener(UIEvents.REMOTE_AUDIO_MUTED, (id) => {
             room.muteParticipant(id);
+        });
+
+        APP.UI.addListener(UIEvents.REMOTE_AUDIO_UNMUTED, (id) => {
+            // room.muteParticipant(id);
+            room.removeCommand(this.commands.defaults.MUTE_PARTICIPANT);
+            room.sendCommandOnce(this.commands.defaults.MUTE_PARTICIPANT, {
+                value: false,
+                attributes: {
+                    participant: id
+                }
+            });
         });
 
         APP.UI.addListener(UIEvents.AUTH_CLICKED, () => {
@@ -1730,6 +1768,26 @@ export default {
      */
     maybeToggleRaisedHand() {
         this.setRaisedHand(!this.isHandRaised);
+    },
+
+    /**
+     * Mute all other participants.
+     */
+    muteAllOthers() {
+        room.sendCommandOnce(this.commands.defaults.MUTE_ALL, {
+            value: true,
+            attributes: {}
+        });
+    },
+
+    /**
+     * Unmute all other participants.
+     */
+    unmuteAllOthers() {
+        room.sendCommandOnce(this.commands.defaults.MUTE_ALL, {
+            value: false,
+            attributes: {}
+        });
     },
 
     /**

@@ -36,19 +36,19 @@ const htmlStr = `
                     data-i18n="settings.moderator"></div>
                 <div id="startMutedOptions" class="hide">
                     <div class="sideToolbarBlock first">
-                        <input type="checkbox" id="startAudioMuted">
+                        <input type="checkbox" id="startAudioMuted" checked>
                         <label class="startMutedLabel" for="startAudioMuted" 
                             data-i18n="settings.startAudioMuted"></label>
                     </div>
                     <div class="sideToolbarBlock">
-                        <input type="checkbox" id="startVideoMuted">
+                        <input type="checkbox" id="startVideoMuted" checked>
                         <label class="startMutedLabel" for="startVideoMuted" 
                             data-i18n="settings.startVideoMuted"></label>
                     </div>
                 </div>
                 <div id="followMeOptions" class="hide">
                     <div class="sideToolbarBlock">
-                        <input type="checkbox" id="followMeCheckBox">
+                        <input type="checkbox" id="followMeCheckBox" checked>
                         <label class="followMeLabel" for="followMeCheckBox" 
                             data-i18n="settings.followMe"></label>
                     </div>
