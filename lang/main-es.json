@@ -205,7 +205,7 @@
         "removeSharedVideoMsg": "¿Estas seguro que deseas eliminar tu vídeo compartido?",
         "alreadySharedVideoMsg": "Otro participante esta ahora mismo compartiendo el vídeo. Esta conferencia permite sólo compartir un único vídeo a la vez.",
         "WaitingForHost": "Esperando al anfitrión...",
-        "WaitForHostMsg": "El evento <b>__room__ </b> aún no ha empezado. Por favor, espera a que el anfitrión llegue... <span style='text-align:center; display:block; margin-top:10px;'><img src=\"wait.gif\"/></span>",
+        "WaitForHostMsg": "El evento <b>__room__ </b> aún no ha empezado. Por favor, espera a que <b>__moderatorName__</b> llegue... <span style='text-align:center; display:block; margin-top:10px;'><img src=\"wait.gif\"/></span>",
         "ModeratorShouldLoginMsg": "La conferencia <b>__room__ </b> aún no ha iniciado. Si eres el anfitrión, por favor, inicia sesión",
         "IamHost": "Yo soy el anfitrión",
         "Cancel": "Cancelar",

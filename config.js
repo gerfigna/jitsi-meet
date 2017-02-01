@@ -3,10 +3,10 @@
 var config = { // eslint-disable-line no-unused-vars
 //    configLocation: './config.json', // see ./modules/HttpConfigFetch.js
     hosts: {
-        domain: 'jitsi3.playeek.com',
-        anonymousdomain: 'guest.jitsi3.playeek.com',
+        domain: 'jitsimeet',
+        anonymousdomain: 'guest.jitsimeet',
         //authdomain: 'jitsimeet',  // defaults to <domain>
-        muc: 'conference.jitsi3.playeek.com', // FIXME: use XEP-0030
+        muc: 'conference.jitsimeet', // FIXME: use XEP-0030
         //jirecon: 'jirecon.jitsimeet',
         //call_control: 'callcontrol.jitsimeet',
         //focus: 'focus.jitsimeet', // defaults to 'focus.jitsimeet'
@@ -18,7 +18,7 @@ var config = { // eslint-disable-line no-unused-vars
 //  useStunTurn: true, // use XEP-0215 to fetch STUN and TURN server
 //  useIPv6: true, // ipv6 support. use at your own risk
     useNicks: false,
-    bosh: '//jitsi3.playeek.com/http-bind', // FIXME: use xep-0156 for that
+    bosh: '//jitsimeet/http-bind', // FIXME: use xep-0156 for that
     clientNode: 'http://jitsi.org/jitsimeet', // The name of client node advertised in XEP-0115 'c' stanza
     //focusUserJid: 'focus@auth.jitsimeet', // The real JID of focus participant - can be overridden here
     //defaultSipNumber: '', // Default SIP number

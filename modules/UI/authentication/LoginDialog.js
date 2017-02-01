@@ -199,12 +199,13 @@ export default {
     /**
      * Show notification that authentication is required
      * to create the conference, so he should authenticate or wait for a host.
+     * @param {string} moderatorName name of moderator
      * @param {string} roomName name of the conference
      * @param {function} onAuthNow callback to invoke if
      * user want to authenticate.
      * @returns dialog
      */
-    showAuthRequiredDialog: function (roomName, onAuthNow) {
+    showAuthRequiredDialog: function (roomName, onAuthNow, moderatorName = 'host name') {
         var msg = config.moderatorLogin ?
             APP.translation.generateTranslationHTML(
                 "[html]dialog.ModeratorShouldLoginMsg",
@@ -213,7 +214,7 @@ export default {
             :
             APP.translation.generateTranslationHTML(
                 "[html]dialog.WaitForHostMsg",
-                {room: roomName}
+                {room: roomName, moderatorName: moderatorName }
             )
         ;
 

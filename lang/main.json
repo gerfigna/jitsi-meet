@@ -247,7 +247,7 @@
         "removeSharedVideoMsg": "Are you sure you would like to remove your shared video?",
         "alreadySharedVideoMsg": "Another participant is already sharing video. This conference allows only one shared video at a time.",
         "WaitingForHost": "Waiting for the host...",
-        "WaitForHostMsg": "The conference <b>__room__ </b> has not yet started. Please wait for the host to arrive... <span style='text-align:center; display:block; margin-top:10px;'><img src=\"wait.gif\"/></span>",
+        "WaitForHostMsg": "The conference <b>__room__ </b> has not yet started. Please wait for <b>__moderatorName__</b> to arrive... <span style='text-align:center; display:block; margin-top:10px;'><img src=\"wait.gif\"/></span>",
         "ModeratorShouldLoginMsg": "The conference <b>__room__ </b> has not yet started. If you are the host then please authenticate",
         "IamHost": "I am the host",
         "Cancel": "Cancel",

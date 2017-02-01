@@ -55,6 +55,7 @@ var interfaceConfig = { // eslint-disable-line no-unused-vars
     filmStripOnly: false,
 
     eventName: 'local_event_name',
+    moderatorName: '*** el anfitrión ***',
     RANDOM_AVATAR_URL_PREFIX: false,
     RANDOM_AVATAR_URL_SUFFIX: false,
     FILM_STRIP_MAX_HEIGHT: 120,
