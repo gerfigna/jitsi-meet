@@ -44,6 +44,7 @@ var commands = {
  * events expected by jitsi-meet
  */
 var events = {
+    "participantKicked": "participant-kicked",
     "incomingMessage": "incoming-message",
     "outgoingMessage": "outgoing-message",
     "displayNameChange": "display-name-change",

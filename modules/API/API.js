@@ -66,6 +66,7 @@ function initCommands() {
  * Maps the supported events and their status
  * (true it the event is enabled and false if it is disabled)
  * @type {{
+ *              participant-kicked: boolean,
  *              incoming-message: boolean,
  *              outgoing-message: boolean,
  *              display-name-change: boolean,
@@ -76,6 +77,7 @@ function initCommands() {
  *      }}
  */
 const events = {
+    "participant-kicked": false,
     "incoming-message": false,
     "outgoing-message":false,
     "display-name-change": false,
@@ -174,6 +176,15 @@ export default {
     },
 
     /**
+     * Notify external application (if API is enabled) that
+     * user is kicked out of the conference.
+     * @param {string} id user id
+     */
+    notifyKicked (id) {
+        triggerEvent("participant-kicked", {id});
+    },
+
+    /**
      * Notify external application (if API is enabled) that message was sent.
      * @param {string} body message body
      */
@@ -232,10 +243,10 @@ export default {
      * Notify external application (if API is enabled) that
      * user changed their nickname.
      * @param {string} id user id
-     * @param {string} displayName user nickname
+     * @param {string} jid user jid
      */
-    notifyConferenceJoined (room) {
-        triggerEvent("video-conference-joined", {roomName: room});
+    notifyConferenceJoined (room, jid) {
+        triggerEvent("video-conference-joined", {roomName: room, jid: jid});
     },
 
     /**

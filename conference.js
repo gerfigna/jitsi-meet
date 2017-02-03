@@ -1111,7 +1111,7 @@ export default {
         // add local streams when joined to the conference
         room.on(ConferenceEvents.CONFERENCE_JOINED, () => {
             APP.UI.mucJoined();
-            APP.API.notifyConferenceJoined(APP.conference.roomName);
+            APP.API.notifyConferenceJoined(APP.conference.roomName, APP.conference.getMyUserId());
             APP.UI.markVideoInterrupted(false);
         });
 
@@ -1478,6 +1478,7 @@ export default {
 
         APP.UI.addListener(UIEvents.USER_KICKED, (id) => {
             room.kickParticipant(id);
+            APP.API.notifyKicked(id);
         });
 
         APP.UI.addListener(UIEvents.REMOTE_AUDIO_MUTED, (id) => {
