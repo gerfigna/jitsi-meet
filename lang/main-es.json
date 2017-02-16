@@ -171,7 +171,7 @@
         "raisedHand": ""
     },
     "dialog": {
-        "kickMessage": "¡Auch! ¡Haz sido expulsado de la reunión!",
+        "kickMessage": "¡Auch! ¡Has sido expulsado de la reunión!",
         "popupError": "Su navegador está bloqueando las ventanas emergentes de este sitio. Por favor, activa las ventanas emergentes en la configuración de seguridad del navegador y vuelva a intentarlo.",
         "passwordError": "Esta conversación está protegida con una contraseña. Sólo el propietario de la conferencia puede establecer una contraseña.",
         "passwordError2": "Esta conversación no está protegida con una contraseña. Sólo el propietario de la conferencia puede establecer una contraseña.",
